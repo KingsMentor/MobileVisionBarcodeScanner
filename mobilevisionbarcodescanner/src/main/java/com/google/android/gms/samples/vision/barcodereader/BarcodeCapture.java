@@ -18,11 +18,9 @@ package com.google.android.gms.samples.vision.barcodereader;
 import android.Manifest;
 import android.annotation.SuppressLint;
 import android.app.Dialog;
-import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
 import android.content.pm.PackageManager;
-import android.content.res.TypedArray;
 import android.hardware.Camera;
 import android.os.Build;
 import android.os.Bundle;
@@ -30,7 +28,6 @@ import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.design.widget.Snackbar;
 import android.support.v4.app.ActivityCompat;
-import android.util.AttributeSet;
 import android.util.Log;
 import android.view.GestureDetector;
 import android.view.LayoutInflater;
@@ -79,39 +76,10 @@ public final class BarcodeCapture extends BarcodeFragment {
     private ScaleGestureDetector scaleGestureDetector;
     private GestureDetector gestureDetector;
 
-    @Override
-    public void onInflate(Context context, AttributeSet attrs, Bundle savedInstanceState) {
-        super.onInflate(context, attrs, savedInstanceState);
-        TypedArray a = getContext().obtainStyledAttributes(attrs, R.styleable.gvb);
-        showFlash = a.getBoolean(R.styleable.gvb_gvb_flash, false);
-        showDrawRect = a.getBoolean(R.styleable.gvb_gvb_draw, false);
-        shouldShowText = a.getBoolean(R.styleable.gvb_gvb_show_text, false);
-        shouldFocus = a.getBoolean(R.styleable.gvb_gvb_auto_focus, false);
-        touchAsCallback = a.getBoolean(R.styleable.gvb_gvb_touch, false);
-        multipleScan = a.getBoolean(R.styleable.gvb_gvb_multiple, false);
-        int colors = a.getResourceId(R.styleable.gvb_gvb_rect_colors, R.array.rect_color);
-        if (colors != 0) {
-            TypedArray resourceArray = getResources().obtainTypedArray(colors);
-            ArrayList<Integer> rectColorsList = new ArrayList<>();
-            for (int i = 0; i < resourceArray.length(); i++) {
-                final int resourceId = resourceArray.getResourceId(i, 0);
-                rectColorsList.add(resourceId);
-                // do stuff with resourceId, such as res.getDrawable(resourceId)
-
-            }
-            rectColors = rectColorsList.toArray(new Integer[rectColorsList.size()]);
-            resourceArray.recycle();
-
-        }
-
-        a.recycle();
-
-    }
 
     /**
      * Initializes the UI and creates the detector pipeline.
      */
-
 
     @Nullable
     @Override
@@ -121,9 +89,9 @@ public final class BarcodeCapture extends BarcodeFragment {
 
         mPreview = (CameraSourcePreview) rootView.findViewById(R.id.preview);
         mGraphicOverlay = (GraphicOverlay<BarcodeGraphic>) rootView.findViewById(R.id.graphicOverlay);
-        mGraphicOverlay.setShowText(shouldShowText);
-        mGraphicOverlay.setRectColors(rectColors);
-        mGraphicOverlay.setDrawRect(showDrawRect);
+        mGraphicOverlay.setShowText(isShouldShowText());
+        mGraphicOverlay.setRectColors(getRectColors());
+        mGraphicOverlay.setDrawRect(isShowDrawRect());
 
         // read parameters from the intent used to launch the activity.
 
@@ -132,7 +100,7 @@ public final class BarcodeCapture extends BarcodeFragment {
         // permission is not granted yet, request permission.
         int rc = ActivityCompat.checkSelfPermission(getContext(), Manifest.permission.CAMERA);
         if (rc == PackageManager.PERMISSION_GRANTED) {
-            createCameraSource(shouldFocus, showFlash);
+            createCameraSource(isShouldFocus(), isShowFlash());
         } else {
             requestCameraPermission();
         }
@@ -277,6 +245,14 @@ public final class BarcodeCapture extends BarcodeFragment {
         startCameraSource();
     }
 
+    public void refresh() {
+        mGraphicOverlay.setDrawRect(isShowDrawRect());
+        mGraphicOverlay.setRectColors(getRectColors());
+        mGraphicOverlay.setShowText(isShouldShowText());
+        mCameraSource.setFocusMode(isShouldFocus() ? Camera.Parameters.FOCUS_MODE_CONTINUOUS_PICTURE : null);
+        mCameraSource.setFlashMode(isShowFlash() ? Camera.Parameters.FLASH_MODE_TORCH : null);
+    }
+
     /**
      * Stops the camera.
      */
@@ -329,7 +305,7 @@ public final class BarcodeCapture extends BarcodeFragment {
         if (grantResults.length != 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
             Log.d(TAG, "Camera permission granted - initialize the camera source");
             // we have permission, so create the camerasource
-            createCameraSource(shouldFocus, showFlash);
+            createCameraSource(isShouldFocus(), isShowFlash());
             return;
         }
 

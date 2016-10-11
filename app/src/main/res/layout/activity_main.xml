@@ -86,7 +86,7 @@
                 android:text="From xml" />
 
             <Button
-                android:id="@+id/read"
+                android:id="@+id/refresh"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Read" />

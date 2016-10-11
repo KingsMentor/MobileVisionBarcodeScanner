@@ -19,8 +19,11 @@ package xyz.belvi.mobilevisionbarcodesample;
 import android.os.Bundle;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.SwitchCompat;
 import android.util.Log;
 import android.util.SparseArray;
+import android.view.View;
+import android.widget.CheckBox;
 
 import com.google.android.gms.samples.vision.barcodereader.BarcodeCapture;
 import com.google.android.gms.samples.vision.barcodereader.BarcodeGraphic;
@@ -41,15 +44,32 @@ public class MainActivity extends AppCompatActivity implements BarcodeRetriever 
 
     private static final String TAG = "BarcodeMain";
 
+    CheckBox fromXMl;
+    SwitchCompat drawRect;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
 
-        BarcodeCapture barcodeCapture = (BarcodeCapture) getSupportFragmentManager().findFragmentById(R.id.barcode);
+        final BarcodeCapture barcodeCapture = (BarcodeCapture) getSupportFragmentManager().findFragmentById(R.id.barcode);
         barcodeCapture.setRetrieval(this);
-        barcodeCapture.onPause();
+
+        fromXMl = (CheckBox) findViewById(R.id.from_xml);
+        drawRect = (SwitchCompat) findViewById(R.id.draw_rect);
+
+        findViewById(R.id.refresh).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if (fromXMl.isChecked()) {
+
+                } else {
+                    barcodeCapture.setShowDrawRect(drawRect.isChecked());
+                    barcodeCapture.refresh();
+                }
+            }
+        });
 
     }
 
