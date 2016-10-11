@@ -32,12 +32,14 @@
             android:padding="4dp">
 
             <android.support.v7.widget.SwitchCompat
+                android:id="@+id/focus"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:text="auto focus" />
 
             <android.support.v7.widget.SwitchCompat
+                android:id="@+id/draw_rect"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="18dp"
@@ -55,12 +57,14 @@
 
 
             <android.support.v7.widget.SwitchCompat
+                android:id="@+id/support_multiple"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:text="support multiple" />
 
             <android.support.v7.widget.SwitchCompat
+                android:id="@+id/touch_callback"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="18dp"
@@ -74,6 +78,7 @@
             android:orientation="horizontal">
 
             <CheckBox
+                android:id="@+id/from_xml"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
@@ -81,6 +86,7 @@
                 android:text="From xml" />
 
             <Button
+                android:id="@+id/read"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Read" />
