@@ -21,7 +21,6 @@ import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.util.SparseArray;
-import android.view.View;
 
 import com.google.android.gms.samples.vision.barcodereader.BarcodeCapture;
 import com.google.android.gms.samples.vision.barcodereader.BarcodeGraphic;
@@ -35,7 +34,7 @@ import xyz.belvi.mobilevisionbarcodescanner.BarcodeRetriever;
  * Main activity demonstrating how to pass extra parameters to an activity that
  * reads barcodes.
  */
-public class MainActivity extends AppCompatActivity implements View.OnClickListener, BarcodeRetriever {
+public class MainActivity extends AppCompatActivity implements BarcodeRetriever {
 
     // use a compound button so either checkbox or switch widgets work.
 
@@ -50,16 +49,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
         BarcodeCapture barcodeCapture = (BarcodeCapture) getSupportFragmentManager().findFragmentById(R.id.barcode);
         barcodeCapture.setRetrieval(this);
-
-    }
-
-    /**
-     * Called when a view has been clicked.
-     *
-     * @param v The view that was clicked.
-     */
-    @Override
-    public void onClick(View v) {
+        barcodeCapture.onPause();
 
     }
 
