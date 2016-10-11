@@ -18,5 +18,5 @@ public interface BarcodeRetriever {
 
     void onBitmapScanned(SparseArray<Barcode> sparseArray);
 
-    void onRetrivedFailed(String reason);
+    void onRetrievedFailed(String reason);
 }

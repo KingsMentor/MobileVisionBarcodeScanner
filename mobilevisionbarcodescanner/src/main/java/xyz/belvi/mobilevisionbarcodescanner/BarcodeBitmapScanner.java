@@ -18,7 +18,7 @@ public class BarcodeBitmapScanner {
                         .setBarcodeFormats(barcodeFormat)
                         .build();
         if (!detector.isOperational()) {
-            barcodeRetriever.onRetrivedFailed("Could not set up the detector!");
+            barcodeRetriever.onRetrievedFailed("Could not set up the detector!");
 //            txtView.setText("Could not set up the detector!");
             return;
         }

@@ -333,7 +333,7 @@ public final class BarcodeCapture extends BarcodeFragment {
             return;
         }
 
-        barcodeRetriever.onRetrivedFailed(getString(R.string.no_camera_permission));
+        barcodeRetriever.onRetrievedFailed(getString(R.string.no_camera_permission));
 
     }
 
