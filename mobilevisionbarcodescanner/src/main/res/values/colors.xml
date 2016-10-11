@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <color name="color_green">#14808d</color>
+    <color name="color_brown">#343838</color>
+    <color name="color_orange">#f38a32</color>
+    <color name="color_blue">#1479b7</color>
+    <color name="divider_grey">#e4e4e5</color>
+
+    <array name="rect_color">
+        <item>@color/color_blue</item>
+        <item>@color/color_brown</item>
+        <item>@color/color_green</item>
+        <item>@color/divider_grey</item>
+        <item>@color/color_orange</item>
+    </array>
+</resources>
