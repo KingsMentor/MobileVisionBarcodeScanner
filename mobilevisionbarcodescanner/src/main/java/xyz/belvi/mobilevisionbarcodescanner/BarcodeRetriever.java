@@ -1,5 +1,7 @@
 package xyz.belvi.mobilevisionbarcodescanner;
 
+import android.util.SparseArray;
+
 import com.google.android.gms.samples.vision.barcodereader.BarcodeGraphic;
 import com.google.android.gms.vision.barcode.Barcode;
 
@@ -13,4 +15,8 @@ public interface BarcodeRetriever {
     void onRetrieved(Barcode barcode);
 
     void onRetrieved(Barcode closetToClick, List<BarcodeGraphic> barcode);
+
+    void onBitmapScanned(SparseArray<Barcode> sparseArray);
+
+    void onRetrivedFailed(String reason);
 }
