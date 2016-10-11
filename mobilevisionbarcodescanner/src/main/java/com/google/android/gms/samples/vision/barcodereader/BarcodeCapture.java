@@ -100,7 +100,7 @@ public final class BarcodeCapture extends BarcodeFragment {
         // permission is not granted yet, request permission.
         int rc = ActivityCompat.checkSelfPermission(getContext(), Manifest.permission.CAMERA);
         if (rc == PackageManager.PERMISSION_GRANTED) {
-            createCameraSource(isShouldFocus(), isShowFlash());
+            createCameraSource(isAutoFocus(), isShowFlash());
         } else {
             requestCameraPermission();
         }
@@ -185,7 +185,7 @@ public final class BarcodeCapture extends BarcodeFragment {
         BarcodeTrackerFactory barcodeFactory = new BarcodeTrackerFactory(mGraphicOverlay) {
             @Override
             void onCodeDetected(Barcode barcode) {
-                if (!isTouchAsCallback() && !isMultipleScan()) {
+                if (!isTouchAsCallback() && !supportMultipleScan()) {
                     barcodeRetriever.onRetrieved(barcode);
                 }
             }
@@ -249,7 +249,7 @@ public final class BarcodeCapture extends BarcodeFragment {
         mGraphicOverlay.setDrawRect(isShowDrawRect());
         mGraphicOverlay.setRectColors(getRectColors());
         mGraphicOverlay.setShowText(isShouldShowText());
-        mCameraSource.setFocusMode(isShouldFocus() ? Camera.Parameters.FOCUS_MODE_CONTINUOUS_PICTURE : null);
+        mCameraSource.setFocusMode(isAutoFocus() ? Camera.Parameters.FOCUS_MODE_CONTINUOUS_PICTURE : null);
         mCameraSource.setFlashMode(isShowFlash() ? Camera.Parameters.FLASH_MODE_TORCH : null);
     }
 
@@ -305,7 +305,7 @@ public final class BarcodeCapture extends BarcodeFragment {
         if (grantResults.length != 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
             Log.d(TAG, "Camera permission granted - initialize the camera source");
             // we have permission, so create the camerasource
-            createCameraSource(isShouldFocus(), isShowFlash());
+            createCameraSource(isAutoFocus(), isShowFlash());
             return;
         }
 
@@ -376,7 +376,7 @@ public final class BarcodeCapture extends BarcodeFragment {
 
         if (best != null) {
             if (barcodeRetriever != null)
-                if (isMultipleScan()) {
+                if (supportMultipleScan()) {
                     barcodeRetriever.onRetrieved(best, mGraphicOverlay.getGraphics());
                 } else {
                     barcodeRetriever.onRetrieved(best);

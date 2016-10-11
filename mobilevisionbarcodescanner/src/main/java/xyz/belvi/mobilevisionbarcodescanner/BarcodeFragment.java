@@ -72,11 +72,11 @@ abstract public class BarcodeFragment extends Fragment {
         this.touchAsCallback = touchAsCallback;
     }
 
-    public boolean isShouldFocus() {
+    public boolean isAutoFocus() {
         return this.shouldFocus;
     }
 
-    public void setShouldFocus(boolean shouldFocus) {
+    public void shouldAutoFocus(boolean shouldFocus) {
         this.shouldFocus = shouldFocus;
     }
 
@@ -88,11 +88,11 @@ abstract public class BarcodeFragment extends Fragment {
         this.showFlash = showFlash;
     }
 
-    public boolean isMultipleScan() {
+    public boolean supportMultipleScan() {
         return this.multipleScan;
     }
 
-    public void setMultipleScan(boolean multipleScan) {
+    public void setSupportMultipleScan(boolean multipleScan) {
         this.multipleScan = multipleScan;
     }
 
