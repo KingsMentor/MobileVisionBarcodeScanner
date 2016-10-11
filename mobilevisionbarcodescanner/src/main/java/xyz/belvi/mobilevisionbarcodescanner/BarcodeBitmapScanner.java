@@ -4,7 +4,6 @@ import android.content.Context;
 import android.graphics.Bitmap;
 
 import com.google.android.gms.vision.Frame;
-import com.google.android.gms.vision.barcode.Barcode;
 import com.google.android.gms.vision.barcode.BarcodeDetector;
 
 /**
@@ -13,10 +12,10 @@ import com.google.android.gms.vision.barcode.BarcodeDetector;
 
 public class BarcodeBitmapScanner {
 
-    public static void scanBitmap(Context context, Bitmap bitmap, BarcodeRetriever barcodeRetriever) {
+    public static void scanBitmap(Context context, Bitmap bitmap, int barcodeFormat, BarcodeRetriever barcodeRetriever) {
         BarcodeDetector detector =
                 new BarcodeDetector.Builder(context)
-                        .setBarcodeFormats(Barcode.DATA_MATRIX | Barcode.QR_CODE)
+                        .setBarcodeFormats(barcodeFormat)
                         .build();
         if (!detector.isOperational()) {
             barcodeRetriever.onRetrivedFailed("Could not set up the detector!");
