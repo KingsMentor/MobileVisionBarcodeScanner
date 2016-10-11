@@ -11,8 +11,8 @@
     <fragment
         android:id="@+id/barcode"
         class="com.google.android.gms.samples.vision.barcodereader.BarcodeCapture"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
         android:layout_weight="1"
         app:gvb_auto_focus="true"
         app:gvb_flash="false" />
@@ -42,7 +42,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="18dp"
                 android:layout_weight="1"
-                android:text="flash" />
+                android:text="draw rect" />
 
 
         </LinearLayout>

@@ -40,14 +40,12 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     // use a compound button so either checkbox or switch widgets work.
 
 
-    private static final int RC_BARCODE_CAPTURE = 9001;
     private static final String TAG = "BarcodeMain";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
 
 
         BarcodeCapture barcodeCapture = (BarcodeCapture) getSupportFragmentManager().findFragmentById(R.id.barcode);
@@ -67,12 +65,19 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
 
     @Override
-    public void onRetrieved(Barcode barcode) {
+    public void onRetrieved(final Barcode barcode) {
         Log.d(TAG, "Barcode read: " + barcode.displayValue);
-        AlertDialog.Builder builder = new AlertDialog.Builder(this)
-                .setTitle("code retrieved")
-                .setMessage(barcode.displayValue);
-        builder.show();
+        runOnUiThread(new Runnable() {
+            @Override
+            public void run() {
+                AlertDialog.Builder builder = new AlertDialog.Builder(MainActivity.this)
+                        .setTitle("code retrieved")
+                        .setMessage(barcode.displayValue);
+                builder.show();
+            }
+        });
+
+
     }
 
     @Override
