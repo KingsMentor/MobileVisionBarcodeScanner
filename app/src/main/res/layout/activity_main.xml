@@ -76,6 +76,13 @@
             android:layout_height="wrap_content"
             android:orientation="horizontal">
 
+            <android.support.v7.widget.SwitchCompat
+                android:id="@+id/drawText"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="18dp"
+                android:layout_weight="1"
+                android:text="draw text" />
             <CheckBox
                 android:id="@+id/from_xml"
                 android:layout_width="wrap_content"
@@ -85,6 +92,7 @@
                 android:text="From xml" />
 
             <Button
+                android:layout_weight="1"
                 android:id="@+id/refresh"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
