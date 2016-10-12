@@ -3,6 +3,11 @@ Barcode Scanner supported by Mobile Vision Api
 
 [![](https://jitpack.io/v/KingsMentor/MobileVisionBarcodeScanner.svg)](https://jitpack.io/#KingsMentor/MobileVisionBarcodeScanner)
 
+
+![Lib Sample](https://github.com/KingsMentor/MobileVisionBarcodeScanner/blob/master/lib_example.gif)
+
+
+
 #### adding as a dependency
 
 ##### Step 1. 
@@ -66,7 +71,7 @@ Add the dependency
 **Note**
 these attributes can also be initialised from `java code` . We would look into that later
 
-### Using the Mobile Vision Power Camera.
+### Using the Mobile Vision Powered Camera.
 
 ##### Step 1 - Add layout in xml:
 
@@ -170,7 +175,7 @@ public class MainActivity extends AppCompatActivity implements BarcodeRetriever 
 }
 ```
 
-as you can see, `BarcodeRetriever` interface  handles the calback when a code is scanned successfully based on specified attributes. 
+as you can see, `BarcodeRetriever` interface  handles the callback when a code is scanned successfully based on specified attributes. 
 
 #### Extras 
 
@@ -195,7 +200,7 @@ barcodeCapture.setShowDrawRect(true);
 
 #### Contributions 
 
-Contributions are welcomed. Generally, contributions are managed by issues and pull requests.
+Contributions are welcome. Generally, contributions are managed by issues and pull requests.
 
 1. Submit an issue describing your proposed fix or feature.
 2. If your proposed fix or feature is accepted then, fork, implement your code change.
