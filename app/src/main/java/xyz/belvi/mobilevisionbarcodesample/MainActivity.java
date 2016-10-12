@@ -31,6 +31,7 @@ import com.google.android.gms.vision.barcode.Barcode;
 
 import java.util.List;
 
+import xyz.belvi.mobilevisionbarcodescanner.BarcodeBitmapScanner;
 import xyz.belvi.mobilevisionbarcodescanner.BarcodeRetriever;
 
 import static xyz.belvi.mobilevisionbarcodesample.R.id.barcode;
@@ -53,6 +54,7 @@ public class MainActivity extends AppCompatActivity implements BarcodeRetriever 
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
 
 
         final BarcodeCapture barcodeCapture = (BarcodeCapture) getSupportFragmentManager().findFragmentById(barcode);
