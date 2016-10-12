@@ -47,7 +47,7 @@ public class MainActivity extends AppCompatActivity implements BarcodeRetriever 
     private static final String TAG = "BarcodeMain";
 
     CheckBox fromXMl;
-    SwitchCompat drawRect, autoFocus, supportMultiple, touchBack;
+    SwitchCompat drawRect, autoFocus, supportMultiple, touchBack, drawText;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -74,6 +74,7 @@ public class MainActivity extends AppCompatActivity implements BarcodeRetriever 
                     barcodeCapture.setSupportMultipleScan(supportMultiple.isChecked());
                     barcodeCapture.setTouchAsCallback(touchBack.isChecked());
                     barcodeCapture.shouldAutoFocus(autoFocus.isChecked());
+                    barcodeCapture.setShouldShowText(drawText.isChecked());
                     barcodeCapture.refresh();
                 }
             }
