@@ -14,7 +14,7 @@ import java.util.List;
 public interface BarcodeRetriever {
     void onRetrieved(Barcode barcode);
 
-    void onRetrieved(Barcode closetToClick, List<BarcodeGraphic> barcode);
+    void onRetrievedMultiple(Barcode closetToClick, List<BarcodeGraphic> barcode);
 
     void onBitmapScanned(SparseArray<Barcode> sparseArray);
 

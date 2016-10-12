@@ -33,6 +33,8 @@ import java.util.List;
 
 import xyz.belvi.mobilevisionbarcodescanner.BarcodeRetriever;
 
+import static xyz.belvi.mobilevisionbarcodesample.R.id.barcode;
+
 /**
  * Main activity demonstrating how to pass extra parameters to an activity that
  * reads barcodes.
@@ -53,7 +55,7 @@ public class MainActivity extends AppCompatActivity implements BarcodeRetriever 
         setContentView(R.layout.activity_main);
 
 
-        final BarcodeCapture barcodeCapture = (BarcodeCapture) getSupportFragmentManager().findFragmentById(R.id.barcode);
+        final BarcodeCapture barcodeCapture = (BarcodeCapture) getSupportFragmentManager().findFragmentById(barcode);
         barcodeCapture.setRetrieval(this);
 
         fromXMl = (CheckBox) findViewById(R.id.from_xml);
@@ -97,7 +99,22 @@ public class MainActivity extends AppCompatActivity implements BarcodeRetriever 
     }
 
     @Override
-    public void onRetrieved(Barcode closetToClick, List<BarcodeGraphic> barcodeGraphics) {
+    public void onRetrievedMultiple(final Barcode closetToClick, final List<BarcodeGraphic> barcodeGraphics) {
+        runOnUiThread(new Runnable() {
+            @Override
+            public void run() {
+                String message = "Code selected : " + closetToClick.displayValue + "\n\nother " +
+                        "codes in frame include : \n";
+                for (int index = 0; index < barcodeGraphics.size(); index++) {
+                    Barcode barcode = barcodeGraphics.get(index).getBarcode();
+                    message += (index + 1) + ". " + barcode.displayValue + "\n";
+                }
+                AlertDialog.Builder builder = new AlertDialog.Builder(MainActivity.this)
+                        .setTitle("code retrieved")
+                        .setMessage(message);
+                builder.show();
+            }
+        });
 
     }
 

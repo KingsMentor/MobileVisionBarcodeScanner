@@ -377,7 +377,7 @@ public final class BarcodeCapture extends BarcodeFragment {
         if (best != null) {
             if (barcodeRetriever != null)
                 if (supportMultipleScan()) {
-                    barcodeRetriever.onRetrieved(best, mGraphicOverlay.getGraphics());
+                    barcodeRetriever.onRetrievedMultiple(best, mGraphicOverlay.getGraphics());
                 } else {
                     barcodeRetriever.onRetrieved(best);
                 }
