@@ -237,6 +237,8 @@ public final class BarcodeCapture extends BarcodeFragment {
         mCameraSource = builder
                 .setFlashMode(useFlash ? Camera.Parameters.FLASH_MODE_TORCH : null)
                 .build();
+
+
     }
 
     /**

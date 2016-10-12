@@ -23,7 +23,6 @@
             <enum name="qr_code" value="256"></enum>
             <enum name="upc_a" value="512"></enum>
             <enum name="upc_e" value="1024"></enum>
-            <enum name="upc_e" value="1024"></enum>
             <enum name="pdf417" value="2028"></enum>
             <enum name="aztec" value="4029"></enum>
             <enum name="upc_e" value="1024"></enum>
