@@ -63,7 +63,7 @@ public class MainActivity extends AppCompatActivity implements BarcodeRetriever 
         autoFocus = (SwitchCompat) findViewById(R.id.focus);
         supportMultiple = (SwitchCompat) findViewById(R.id.support_multiple);
         touchBack = (SwitchCompat) findViewById(R.id.touch_callback);
-        drawRect = (SwitchCompat) findViewById(R.id.draw_text);
+        drawText = (SwitchCompat) findViewById(R.id.draw_text);
 
         findViewById(R.id.refresh).setOnClickListener(new View.OnClickListener() {
             @Override
