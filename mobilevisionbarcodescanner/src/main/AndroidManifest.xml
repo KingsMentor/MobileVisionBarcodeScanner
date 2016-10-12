@@ -8,6 +8,10 @@
         android:label="@string/app_name"
         android:supportsRtl="true">
 
+        <meta-data
+            android:name="com.google.android.gms.vision.DEPENDENCIES"
+            android:value="barcode" />
     </application>
+
 
 </manifest>

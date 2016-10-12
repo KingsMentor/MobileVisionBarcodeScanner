@@ -1,25 +1,33 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
     tools:context=".MainActivity">
 
-    <fragment
-        android:id="@+id/barcode"
-        class="com.google.android.gms.samples.vision.barcodereader.BarcodeCapture"
+    <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:layout_above="@+id/actions"
         android:layout_weight="1"
-        app:gvb_auto_focus="true"
-        app:gvb_flash="false" />
+        android:gravity="center">
+
+        <fragment
+            android:id="@+id/barcode"
+            android:name="com.google.android.gms.samples.vision.barcodereader.BarcodeCapture"
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            app:gvb_auto_focus="true"
+            app:gvb_flash="false" />
+    </RelativeLayout>
 
 
     <LinearLayout
+        android:id="@+id/actions"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
         android:orientation="vertical"
         android:paddingLeft="16dp"
         android:paddingRight="16dp">
@@ -83,6 +91,7 @@
                 android:layout_marginLeft="18dp"
                 android:layout_weight="1"
                 android:text="draw text" />
+
             <CheckBox
                 android:id="@+id/from_xml"
                 android:layout_width="wrap_content"
@@ -92,10 +101,10 @@
                 android:text="From xml" />
 
             <Button
-                android:layout_weight="1"
                 android:id="@+id/refresh"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_weight="1"
                 android:text="Refresh" />
         </LinearLayout>
 
@@ -103,4 +112,4 @@
     </LinearLayout>
 
 
-</LinearLayout>
+</RelativeLayout>
