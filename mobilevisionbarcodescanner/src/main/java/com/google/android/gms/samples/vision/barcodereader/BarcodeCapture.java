@@ -180,7 +180,10 @@ public final class BarcodeCapture extends BarcodeFragment {
         // is set to receive the barcode detection results, track the barcodes, and maintain
         // graphics for each barcode on screen.  The factory is used by the multi-processor to
         // create a separate tracker instance for each barcode.
-        BarcodeDetector barcodeDetector = new BarcodeDetector.Builder(getContext()).build();
+        BarcodeDetector barcodeDetector = new BarcodeDetector.Builder(getContext())
+                .setBarcodeFormats(getBarcodeFormat())
+                .build();
+
 
         BarcodeTrackerFactory barcodeFactory = new BarcodeTrackerFactory(mGraphicOverlay) {
             @Override
@@ -282,7 +285,7 @@ public final class BarcodeCapture extends BarcodeFragment {
      * <p>
      * <strong>Note:</strong> It is possible that the permissions request interaction
      * with the user is interrupted. In this case you will receive empty permissions
-     * and results arrays which should be treated as a cancellation.
+     * and results arrays which should be treated as a cancellationt
      * </p>
      *
      * @param requestCode  The request code passed in {@link #requestPermissions(String[], int)}.

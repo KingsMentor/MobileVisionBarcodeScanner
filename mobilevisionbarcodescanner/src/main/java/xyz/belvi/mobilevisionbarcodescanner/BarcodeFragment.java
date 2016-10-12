@@ -18,6 +18,8 @@ abstract public class BarcodeFragment extends Fragment {
 
     private Integer[] rectColors;
 
+    private int barcodeFormat;
+
     @Override
     public void onInflate(Context context, AttributeSet attrs, Bundle savedInstanceState) {
         super.onInflate(context, attrs, savedInstanceState);
@@ -28,6 +30,7 @@ abstract public class BarcodeFragment extends Fragment {
         shouldFocus = a.getBoolean(R.styleable.gvb_gvb_auto_focus, false);
         touchAsCallback = a.getBoolean(R.styleable.gvb_gvb_touch, false);
         multipleScan = a.getBoolean(R.styleable.gvb_gvb_multiple, false);
+        barcodeFormat = a.getInt(R.styleable.gvb_gvb_code_format, 0);
         int colors = a.getResourceId(R.styleable.gvb_gvb_rect_colors, R.array.rect_color);
         if (colors != 0) {
             TypedArray resourceArray = getResources().obtainTypedArray(colors);
@@ -47,6 +50,13 @@ abstract public class BarcodeFragment extends Fragment {
 
     }
 
+    public int getBarcodeFormat() {
+        return this.barcodeFormat;
+    }
+
+    public void setBarcodeFormat(int barcodeFormat) {
+        this.barcodeFormat = barcodeFormat;
+    }
 
     public boolean isShouldShowText() {
         return this.shouldShowText;
