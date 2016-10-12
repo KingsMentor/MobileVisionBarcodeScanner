@@ -174,7 +174,7 @@ as you can see, `BarcodeRetriever` interface  handles the calback when a code is
 
 #### Extras 
 
-* To scanned a bitmap,
+* To scan a bitmap,
 
 ```java
 BarcodeBitmapScanner.scanBitmap(this, bitmap, Barcode.ALL_FORMATS, this);
@@ -203,4 +203,7 @@ Contributions are welcomed. Generally, contributions are managed by issues and p
 4. Ensure your code is properly tested.
 5. Ensure your commits follow the <a href="https://udacity.github.io/git-styleguide/" target="_blank">accepted commit message style</a>
 5. Submit a pull request.
+
+#License
+The MIT License (MIT). Please see the [License File](https://github.com/KingsMentor/MobileVisionBarcodeScanner/blob/master/README.md) for more information.
 
