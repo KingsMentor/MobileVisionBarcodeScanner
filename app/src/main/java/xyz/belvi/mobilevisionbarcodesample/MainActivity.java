@@ -31,7 +31,6 @@ import com.google.android.gms.vision.barcode.Barcode;
 
 import java.util.List;
 
-import xyz.belvi.mobilevisionbarcodescanner.BarcodeBitmapScanner;
 import xyz.belvi.mobilevisionbarcodescanner.BarcodeRetriever;
 
 import static xyz.belvi.mobilevisionbarcodesample.R.id.barcode;
