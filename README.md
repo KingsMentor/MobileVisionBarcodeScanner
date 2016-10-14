@@ -2,6 +2,7 @@
 Barcode Scanner supported by Mobile Vision Api
 
 [![](https://jitpack.io/v/KingsMentor/MobileVisionBarcodeScanner.svg)](https://jitpack.io/#KingsMentor/MobileVisionBarcodeScanner)
+[![Android Arsenal](https://img.shields.io/badge/Android%20Arsenal-MobileVisionBarcodeScanner-brightgreen.svg?style=flat)](http://android-arsenal.com/details/1/4516)
 
 
 ![Lib Sample](https://github.com/KingsMentor/MobileVisionBarcodeScanner/blob/master/lib_example.gif)
@@ -23,7 +24,7 @@ Add the JitPack repository to your build file in your root build.gradle at the e
 Add the dependency
 
 	dependencies {
-	        compile 'com.github.KingsMentor:MobileVisionBarcodeScanner:v1.0'
+	        compile 'com.github.KingsMentor:MobileVisionBarcodeScanner:v1.2'
 	}
 
 #### Supported Attributes
