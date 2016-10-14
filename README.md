@@ -24,7 +24,7 @@ Add the JitPack repository to your build file in your root build.gradle at the e
 Add the dependency
 
 	dependencies {
-	        compile 'com.github.KingsMentor:MobileVisionBarcodeScanner:v1.2'
+	        compile('com.github.KingsMentor:MobileVisionBarcodeScanner:v1.2') { transitive = true; }
 	}
 
 #### Supported Attributes
