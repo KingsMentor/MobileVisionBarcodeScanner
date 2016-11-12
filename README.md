@@ -211,5 +211,5 @@ Contributions are welcome. Generally, contributions are managed by issues and pu
 5. Submit a pull request.
 
 #License
-The MIT License (MIT). Please see the [License File](https://github.com/KingsMentor/MobileVisionBarcodeScanner/blob/master/README.md) for more information.
+The MIT License (MIT). Please see the [License File](https://github.com/KingsMentor/MobileVisionBarcodeScanner/blob/master/license) for more information.
 
