@@ -44,10 +44,12 @@ import com.google.android.gms.samples.vision.barcodereader.ui.camera.GraphicOver
 import com.google.android.gms.vision.MultiProcessor;
 import com.google.android.gms.vision.barcode.Barcode;
 import com.google.android.gms.vision.barcode.BarcodeDetector;
+import com.tbruyelle.rxpermissions.RxPermissions;
 
 import java.io.IOException;
 import java.util.ArrayList;
 
+import rx.functions.Action1;
 import xyz.belvi.mobilevisionbarcodescanner.BarcodeFragment;
 import xyz.belvi.mobilevisionbarcodescanner.R;
 
@@ -131,21 +133,17 @@ public final class BarcodeCapture extends BarcodeFragment {
 
         final String[] permissions = new String[]{Manifest.permission.CAMERA};
 
-        if (!ActivityCompat.shouldShowRequestPermissionRationale(getActivity(),
-                Manifest.permission.CAMERA)) {
-            ActivityCompat.requestPermissions(getActivity(), permissions, RC_HANDLE_CAMERA_PERM);
-            return;
-        }
+        RxPermissions rxPermissions = new RxPermissions(getActivity());
+        rxPermissions.request(Manifest.permission.CAMERA)
+                .subscribe(new Action1<Boolean>() {
 
-
-        View.OnClickListener listener = new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                ActivityCompat.requestPermissions(getActivity(), permissions,
-                        RC_HANDLE_CAMERA_PERM);
-            }
-        };
-
+                    @Override
+                    public void call(Boolean granted) {
+                        if (granted) {
+                            createCameraSource(isAutoFocus(), isShowFlash());
+                        }
+                    }
+                });
     }
 
 
