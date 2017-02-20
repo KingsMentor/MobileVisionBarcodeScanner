@@ -44,10 +44,12 @@ import com.google.android.gms.samples.vision.barcodereader.ui.camera.GraphicOver
 import com.google.android.gms.vision.MultiProcessor;
 import com.google.android.gms.vision.barcode.Barcode;
 import com.google.android.gms.vision.barcode.BarcodeDetector;
+import com.tbruyelle.rxpermissions2.RxPermissions;
 
 import java.io.IOException;
 import java.util.ArrayList;
 
+import io.reactivex.functions.Consumer;
 import xyz.belvi.mobilevisionbarcodescanner.BarcodeFragment;
 import xyz.belvi.mobilevisionbarcodescanner.R;
 
@@ -95,14 +97,7 @@ public final class BarcodeCapture extends BarcodeFragment {
         // read parameters from the intent used to launch the activity.
 
 
-        // Check for the camera permission before accessing the camera.  If the
-        // permission is not granted yet, request permission.
-        int rc = ActivityCompat.checkSelfPermission(getContext(), Manifest.permission.CAMERA);
-        if (rc == PackageManager.PERMISSION_GRANTED) {
-            createCameraSource(isAutoFocus(), isShowFlash());
-        } else {
-            requestCameraPermission();
-        }
+        requestCameraPermission();
 
         gestureDetector = new GestureDetector(getContext(), new CaptureGestureListener());
         scaleGestureDetector = new ScaleGestureDetector(getContext(), new ScaleListener());
@@ -127,37 +122,19 @@ public final class BarcodeCapture extends BarcodeFragment {
      * sending the request.
      */
     private void requestCameraPermission() {
-        Log.w(TAG, "Camera permission is not granted. Requesting permission");
+        RxPermissions rxPermissions = new RxPermissions(getActivity());
+        rxPermissions.request(Manifest.permission.CAMERA)
+                .subscribe(new Consumer<Boolean>() {
 
-        final String[] permissions = new String[]{Manifest.permission.CAMERA};
-
-        if (!ActivityCompat.shouldShowRequestPermissionRationale(getActivity(),
-                Manifest.permission.CAMERA)) {
-            ActivityCompat.requestPermissions(getActivity(), permissions, RC_HANDLE_CAMERA_PERM);
-            return;
-        }
-
-
-        View.OnClickListener listener = new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                ActivityCompat.requestPermissions(getActivity(), permissions,
-                        RC_HANDLE_CAMERA_PERM);
-            }
-        };
-
+                    @Override
+                    public void accept(Boolean granted) throws Exception {
+                        if (granted) {
+                            createCameraSource(isAutoFocus(), isShowFlash());
+                        }
+                    }
+                });
     }
-
-
-//    @Override
-//    public boolean onTouchEvent(MotionEvent e) {
-//        boolean b = scaleGestureDetector.onTouchEvent(e);
-//
-//        boolean c = gestureDetector.onTouchEvent(e);
-//
-//        return b || c || super.onTouchEvent(e);
-//    }
-
+    
 
     /**
      * Creates and starts the camera.  Note that this uses a higher resolution in comparison

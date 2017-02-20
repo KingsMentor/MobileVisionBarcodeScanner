@@ -5,7 +5,7 @@ android {
     buildToolsVersion "24.0.2"
     defaultConfig {
         applicationId "xyz.belvi.mobilevisionbarcodesample"
-        minSdkVersion 9
+        minSdkVersion 11
         targetSdkVersion 24
         versionCode 1
         versionName "1.0"
@@ -35,5 +35,6 @@ dependencies {
     compile fileTree(dir: 'libs', include: ['*.jar'])
     compile 'com.android.support:support-v4:24.2.0'
     compile 'com.android.support:design:24.2.0'
-    compile('com.github.KingsMentor:MobileVisionBarcodeScanner:1.2') { transitive = true; }
+    compile project(':mobilevisionbarcodescanner')
+    //compile('com.github.CharlesHarroch:MobileVisionBarcodeScanner:1.2') { transitive = true; }
 }

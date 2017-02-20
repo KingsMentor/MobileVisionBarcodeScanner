@@ -5,7 +5,7 @@ android {
     buildToolsVersion "24.0.2"
 
     defaultConfig {
-        minSdkVersion 9
+        minSdkVersion 11
         targetSdkVersion 24
         versionCode 1
         versionName "1.0"
@@ -21,4 +21,6 @@ android {
 
 dependencies {
     compile 'com.google.android.gms:play-services-vision:9.6.1'
+    compile 'com.tbruyelle.rxpermissions2:rxpermissions:0.9.1@aar'
+    compile 'io.reactivex.rxjava2:rxjava:2.0.5'
 }
