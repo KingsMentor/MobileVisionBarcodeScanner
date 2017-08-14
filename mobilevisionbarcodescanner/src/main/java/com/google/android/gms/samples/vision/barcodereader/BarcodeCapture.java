@@ -77,6 +77,7 @@ public final class BarcodeCapture extends BarcodeFragment {
     // helper objects for detecting taps and pinches.
     private ScaleGestureDetector scaleGestureDetector;
     private GestureDetector gestureDetector;
+    private BarcodeDetector barcodeDetector;
 
 
     /**
@@ -155,7 +156,7 @@ public final class BarcodeCapture extends BarcodeFragment {
         // is set to receive the barcode detection results, track the barcodes, and maintain
         // graphics for each barcode on screen.  The factory is used by the multi-processor to
         // create a separate tracker instance for each barcode.
-        BarcodeDetector barcodeDetector = new BarcodeDetector.Builder(getContext())
+        barcodeDetector = new BarcodeDetector.Builder(getContext())
                 .setBarcodeFormats(getBarcodeFormat())
                 .build();
 
@@ -440,5 +441,12 @@ public final class BarcodeCapture extends BarcodeFragment {
         public void onScaleEnd(ScaleGestureDetector detector) {
             mCameraSource.doZoom(detector.getScaleFactor());
         }
+    }
+
+    @Override
+    public void stopScanning() {
+        super.stopScanning();
+        barcodeDetector.release();
+
     }
 }

@@ -153,4 +153,7 @@ abstract public class BarcodeFragment extends Fragment {
     public boolean isBarcodeFormatUpdate() {
         return barcodeFormatUpdate;
     }
+
+    public void stopScanning() {
+    }
 }

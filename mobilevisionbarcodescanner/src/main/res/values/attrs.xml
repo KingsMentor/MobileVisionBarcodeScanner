@@ -14,7 +14,7 @@
             <enum name="back" value="0"></enum>
             <enum name="front" value="0"></enum>
         </attr>
-        <attr name="gvb_code_format" format="flag">
+        <attr name="gvb_code_format">
             <flag name="all_format" value="0"></flag>
             <flag name="code_128" value="1"></flag>
             <flag name="code_39" value="2"></flag>
