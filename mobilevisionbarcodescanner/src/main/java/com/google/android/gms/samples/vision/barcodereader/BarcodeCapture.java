@@ -448,5 +448,11 @@ public final class BarcodeCapture extends BarcodeFragment {
         super.stopScanning();
         barcodeDetector.release();
 
+
+    }
+
+    @Override
+    public Camera retrieveCamera() {
+        return mCameraSource.getCamera();
     }
 }

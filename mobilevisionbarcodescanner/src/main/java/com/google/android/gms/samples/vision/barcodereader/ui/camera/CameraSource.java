@@ -1228,4 +1228,8 @@ public class CameraSource {
             }
         }
     }
+
+    public Camera getCamera() {
+        return mCamera;
+    }
 }

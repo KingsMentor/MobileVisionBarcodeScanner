@@ -2,6 +2,7 @@ package xyz.belvi.mobilevisionbarcodescanner;
 
 import android.content.Context;
 import android.content.res.TypedArray;
+import android.hardware.Camera;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.util.AttributeSet;
@@ -156,4 +157,6 @@ abstract public class BarcodeFragment extends Fragment {
 
     public void stopScanning() {
     }
+
+    public abstract Camera retrieveCamera();
 }
