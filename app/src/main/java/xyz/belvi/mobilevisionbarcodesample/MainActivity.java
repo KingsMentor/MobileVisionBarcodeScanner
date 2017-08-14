@@ -68,6 +68,13 @@ public class MainActivity extends AppCompatActivity implements BarcodeRetriever 
         flash = (SwitchCompat) findViewById(R.id.on_flash);
         frontCam = (SwitchCompat) findViewById(R.id.front_cam);
 
+        findViewById(R.id.stop).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+            }
+        });
+
         findViewById(R.id.refresh).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -136,6 +143,11 @@ public class MainActivity extends AppCompatActivity implements BarcodeRetriever 
 
     @Override
     public void onRetrievedFailed(String reason) {
+
+    }
+
+    @Override
+    public void onPermissionRequestDenied() {
 
     }
 

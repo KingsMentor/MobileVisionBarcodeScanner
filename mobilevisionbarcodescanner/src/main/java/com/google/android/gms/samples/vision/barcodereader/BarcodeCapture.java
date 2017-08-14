@@ -131,6 +131,8 @@ public final class BarcodeCapture extends BarcodeFragment {
                     public void accept(Boolean granted) throws Exception {
                         if (granted) {
                             createCameraSource(isAutoFocus(), isShowFlash());
+                        } else {
+                            barcodeRetriever.onPermissionRequestDenied();
                         }
                     }
                 });

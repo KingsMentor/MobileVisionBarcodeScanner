@@ -19,4 +19,6 @@ public interface BarcodeRetriever {
     void onBitmapScanned(SparseArray<Barcode> sparseArray);
 
     void onRetrievedFailed(String reason);
+
+    void onPermissionRequestDenied();
 }
