@@ -22,6 +22,8 @@ abstract public class BarcodeFragment extends Fragment {
 
     private int barcodeFormat, cameraFacing;
 
+    private boolean barcodeFormatUpdate = false;
+
     @Override
     public void onInflate(Context context, AttributeSet attrs, Bundle savedInstanceState) {
         super.onInflate(context, attrs, savedInstanceState);
@@ -33,7 +35,7 @@ abstract public class BarcodeFragment extends Fragment {
         touchAsCallback = a.getBoolean(R.styleable.gvb_gvb_touch, false);
         multipleScan = a.getBoolean(R.styleable.gvb_gvb_multiple, false);
         barcodeFormat = a.getInt(R.styleable.gvb_gvb_code_format, 0);
-        barcodeFormat = a.getInt(R.styleable.gvb_gvb_camera_facing, CameraSource.CAMERA_FACING_BACK);
+        cameraFacing = a.getInt(R.styleable.gvb_gvb_camera_facing, CameraSource.CAMERA_FACING_BACK);
         int colors = a.getResourceId(R.styleable.gvb_gvb_rect_colors, R.array.rect_color);
         if (colors != 0) {
             TypedArray resourceArray = getResources().obtainTypedArray(colors);
@@ -57,8 +59,10 @@ abstract public class BarcodeFragment extends Fragment {
         return this.barcodeFormat;
     }
 
-    public void setBarcodeFormat(int barcodeFormat) {
+    public BarcodeFragment setBarcodeFormat(int barcodeFormat) {
+        barcodeFormatUpdate = getBarcodeFormat() != barcodeFormat;
         this.barcodeFormat = barcodeFormat;
+        return this;
     }
 
     public boolean isShouldShowText() {
@@ -139,5 +143,14 @@ abstract public class BarcodeFragment extends Fragment {
 
     public void setRetrieval(BarcodeRetriever retrieval) {
         barcodeRetriever = retrieval;
+    }
+
+    protected BarcodeFragment setBarcodeFormatUpdate(boolean barcodeFormatUpdate) {
+        this.barcodeFormatUpdate = barcodeFormatUpdate;
+        return this;
+    }
+
+    public boolean isBarcodeFormatUpdate() {
+        return barcodeFormatUpdate;
     }
 }

@@ -86,6 +86,7 @@ public class MainActivity extends AppCompatActivity implements BarcodeRetriever 
                             .setTouchAsCallback(touchBack.isChecked())
                             .shouldAutoFocus(autoFocus.isChecked())
                             .setShowFlash(flash.isChecked())
+                            .setBarcodeFormat(Barcode.ISBN | Barcode.CODABAR)
                             .setCameraFacing(frontCam.isChecked() ? CameraSource.CAMERA_FACING_FRONT : CameraSource.CAMERA_FACING_BACK)
                             .setShouldShowText(drawText.isChecked());
                     barcodeCapture.refresh();
