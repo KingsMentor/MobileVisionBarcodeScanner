@@ -10,6 +10,10 @@
         <attr name="gvb_auto_focus" format="boolean" />
         <attr name="gvb_flash" format="boolean" />
         <attr name="gvb_rect_colors" format="reference" />
+        <attr name="gvb_camera_facing" format="enum">
+            <enum name="back" value="0"></enum>
+            <enum name="front" value="0"></enum>
+        </attr>
         <attr name="gvb_code_format" format="enum">
             <enum name="all_format" value="0"></enum>
             <enum name="code_128" value="1"></enum>
@@ -25,7 +29,6 @@
             <enum name="upc_e" value="1024"></enum>
             <enum name="pdf417" value="2028"></enum>
             <enum name="aztec" value="4029"></enum>
-
         </attr>
 
     </declare-styleable>

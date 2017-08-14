@@ -45,7 +45,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:text="auto focus" />
+                android:text="focus" />
 
             <android.support.v7.widget.SwitchCompat
                 android:id="@+id/draw_rect"
@@ -53,7 +53,16 @@
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="18dp"
                 android:layout_weight="1"
-                android:text="draw rect" />
+                android:text="rect" />
+
+
+            <android.support.v7.widget.SwitchCompat
+                android:id="@+id/on_flash"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="18dp"
+                android:layout_weight="1"
+                android:text="flash" />
 
 
         </LinearLayout>
@@ -70,7 +79,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:text="support multiple" />
+                android:text="multiple" />
 
             <android.support.v7.widget.SwitchCompat
                 android:id="@+id/touch_callback"
@@ -78,7 +87,17 @@
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="18dp"
                 android:layout_weight="1"
-                android:text="touch callback" />
+                android:text="touch" />
+
+
+            <android.support.v7.widget.SwitchCompat
+                android:id="@+id/front_cam"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="18dp"
+                android:layout_weight="1"
+                android:text="front cam" />
+
         </LinearLayout>
 
         <LinearLayout

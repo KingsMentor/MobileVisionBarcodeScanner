@@ -6,6 +6,8 @@ import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.util.AttributeSet;
 
+import com.google.android.gms.samples.vision.barcodereader.ui.camera.CameraSource;
+
 import java.util.ArrayList;
 
 /**
@@ -18,7 +20,7 @@ abstract public class BarcodeFragment extends Fragment {
 
     private Integer[] rectColors;
 
-    private int barcodeFormat;
+    private int barcodeFormat, cameraFacing;
 
     @Override
     public void onInflate(Context context, AttributeSet attrs, Bundle savedInstanceState) {
@@ -31,6 +33,7 @@ abstract public class BarcodeFragment extends Fragment {
         touchAsCallback = a.getBoolean(R.styleable.gvb_gvb_touch, false);
         multipleScan = a.getBoolean(R.styleable.gvb_gvb_multiple, false);
         barcodeFormat = a.getInt(R.styleable.gvb_gvb_code_format, 0);
+        barcodeFormat = a.getInt(R.styleable.gvb_gvb_camera_facing, CameraSource.CAMERA_FACING_BACK);
         int colors = a.getResourceId(R.styleable.gvb_gvb_rect_colors, R.array.rect_color);
         if (colors != 0) {
             TypedArray resourceArray = getResources().obtainTypedArray(colors);
@@ -62,56 +65,74 @@ abstract public class BarcodeFragment extends Fragment {
         return this.shouldShowText;
     }
 
-    public void setShouldShowText(boolean shouldShowText) {
+    public BarcodeFragment setShouldShowText(boolean shouldShowText) {
         this.shouldShowText = shouldShowText;
+        return this;
     }
 
     public boolean isShowDrawRect() {
         return this.showDrawRect;
     }
 
-    public void setShowDrawRect(boolean showDrawRect) {
+    public BarcodeFragment setShowDrawRect(boolean showDrawRect) {
         this.showDrawRect = showDrawRect;
+        return this;
     }
 
     public boolean isTouchAsCallback() {
         return this.touchAsCallback;
     }
 
-    public void setTouchAsCallback(boolean touchAsCallback) {
+    public BarcodeFragment setTouchAsCallback(boolean touchAsCallback) {
         this.touchAsCallback = touchAsCallback;
+        return this;
+    }
+
+
+    public int getCameraFacing() {
+        return cameraFacing;
+    }
+
+    public BarcodeFragment setCameraFacing(int cameraFacing) {
+        this.cameraFacing = cameraFacing;
+        return this;
     }
 
     public boolean isAutoFocus() {
         return this.shouldFocus;
     }
 
-    public void shouldAutoFocus(boolean shouldFocus) {
+    public BarcodeFragment shouldAutoFocus(boolean shouldFocus) {
         this.shouldFocus = shouldFocus;
+        return this;
     }
 
     public boolean isShowFlash() {
         return this.showFlash;
+
     }
 
-    public void setShowFlash(boolean showFlash) {
+    public BarcodeFragment setShowFlash(boolean showFlash) {
         this.showFlash = showFlash;
+        return this;
     }
 
     public boolean supportMultipleScan() {
         return this.multipleScan;
     }
 
-    public void setSupportMultipleScan(boolean multipleScan) {
+    public BarcodeFragment setSupportMultipleScan(boolean multipleScan) {
         this.multipleScan = multipleScan;
+        return this;
     }
 
     public Integer[] getRectColors() {
         return this.rectColors;
     }
 
-    public void setRectColors(Integer[] rectColors) {
+    public BarcodeFragment setRectColors(Integer[] rectColors) {
         this.rectColors = rectColors;
+        return this;
     }
 
     protected BarcodeRetriever barcodeRetriever;

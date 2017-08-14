@@ -27,7 +27,6 @@ import android.os.Build;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
-import android.support.v4.app.ActivityCompat;
 import android.util.DisplayMetrics;
 import android.util.Log;
 import android.view.GestureDetector;
@@ -136,7 +135,7 @@ public final class BarcodeCapture extends BarcodeFragment {
                     }
                 });
     }
-    
+
 
     /**
      * Creates and starts the camera.  Note that this uses a higher resolution in comparison
@@ -196,8 +195,8 @@ public final class BarcodeCapture extends BarcodeFragment {
 
         DisplayMetrics displayMetrics = new DisplayMetrics();
         ((Activity) getContext()).getWindowManager()
-                         .getDefaultDisplay()
-                         .getMetrics(displayMetrics);
+                .getDefaultDisplay()
+                .getMetrics(displayMetrics);
         int height = displayMetrics.heightPixels;
         int width = displayMetrics.widthPixels;
 
@@ -205,7 +204,7 @@ public final class BarcodeCapture extends BarcodeFragment {
         // to other detection examples to enable the barcode detector to detect small barcodes
         // at long distances.
         CameraSource.Builder builder = new CameraSource.Builder(getContext(), barcodeDetector)
-                .setFacing(CameraSource.CAMERA_FACING_BACK)
+                .setFacing(getCameraFacing())
                 .setRequestedPreviewSize(height, width)
                 .setRequestedFps(15.0f);
 
@@ -237,6 +236,13 @@ public final class BarcodeCapture extends BarcodeFragment {
         mGraphicOverlay.setShowText(isShouldShowText());
         mCameraSource.setFocusMode(isAutoFocus() ? Camera.Parameters.FOCUS_MODE_CONTINUOUS_PICTURE : null);
         mCameraSource.setFlashMode(isShowFlash() ? Camera.Parameters.FLASH_MODE_TORCH : Camera.Parameters.FLASH_MODE_OFF);
+        if (getCameraFacing() != mCameraSource.getCameraFacing()) {
+            mCameraSource.setCameraFacing(getCameraFacing());
+            mCameraSource.stop();
+            mCameraSource.release();
+            createCameraSource(isAutoFocus(), isShowFlash());
+            startCameraSource();
+        }
     }
 
     /**

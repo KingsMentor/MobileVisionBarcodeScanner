@@ -92,26 +92,28 @@ public class CameraSource {
     private static final float ASPECT_RATIO_TOLERANCE = 0.01f;
 
     @StringDef({
-        Camera.Parameters.FOCUS_MODE_CONTINUOUS_PICTURE,
-        Camera.Parameters.FOCUS_MODE_CONTINUOUS_VIDEO,
-        Camera.Parameters.FOCUS_MODE_AUTO,
-        Camera.Parameters.FOCUS_MODE_EDOF,
-        Camera.Parameters.FOCUS_MODE_FIXED,
-        Camera.Parameters.FOCUS_MODE_INFINITY,
-        Camera.Parameters.FOCUS_MODE_MACRO
+            Camera.Parameters.FOCUS_MODE_CONTINUOUS_PICTURE,
+            Camera.Parameters.FOCUS_MODE_CONTINUOUS_VIDEO,
+            Camera.Parameters.FOCUS_MODE_AUTO,
+            Camera.Parameters.FOCUS_MODE_EDOF,
+            Camera.Parameters.FOCUS_MODE_FIXED,
+            Camera.Parameters.FOCUS_MODE_INFINITY,
+            Camera.Parameters.FOCUS_MODE_MACRO
     })
     @Retention(RetentionPolicy.SOURCE)
-    private @interface FocusMode {}
+    private @interface FocusMode {
+    }
 
     @StringDef({
-        Camera.Parameters.FLASH_MODE_ON,
-        Camera.Parameters.FLASH_MODE_OFF,
-        Camera.Parameters.FLASH_MODE_AUTO,
-        Camera.Parameters.FLASH_MODE_RED_EYE,
-        Camera.Parameters.FLASH_MODE_TORCH
+            Camera.Parameters.FLASH_MODE_ON,
+            Camera.Parameters.FLASH_MODE_OFF,
+            Camera.Parameters.FLASH_MODE_AUTO,
+            Camera.Parameters.FLASH_MODE_RED_EYE,
+            Camera.Parameters.FLASH_MODE_TORCH
     })
     @Retention(RetentionPolicy.SOURCE)
-    private @interface FlashMode {}
+    private @interface FlashMode {
+    }
 
     private Context mContext;
 
@@ -575,12 +577,27 @@ public class CameraSource {
         synchronized (mCameraLock) {
             if (mCamera != null && mode != null) {
                 Camera.Parameters parameters = mCamera.getParameters();
-                if (parameters.getSupportedFlashModes().contains(mode)) {
-                    parameters.setFlashMode(mode);
-                    mCamera.setParameters(parameters);
-                    mFlashMode = mode;
-                    return true;
-                }
+                parameters.setFlashMode(mode);
+                mCamera.setParameters(parameters);
+                mFlashMode = mode;
+                return true;
+            }
+
+            return false;
+        }
+    }
+
+    /**
+     * Sets the camera face.
+     *
+     * @param face camera face.
+     * @return {@code true} if the camera face is change, {@code false} otherwise
+     * @see #getCameraFacing()
+     */
+    public boolean setCameraFacing(@FlashMode int face) {
+        synchronized (mCameraLock) {
+            if (mCamera != null) {
+                mFacing = face;
             }
 
             return false;
@@ -1126,8 +1143,8 @@ public class CameraSource {
 
                 if (!mBytesToByteBuffer.containsKey(data)) {
                     Log.d(TAG,
-                        "Skipping frame.  Could not find ByteBuffer associated with the image " +
-                        "data from the camera.");
+                            "Skipping frame.  Could not find ByteBuffer associated with the image " +
+                                    "data from the camera.");
                     return;
                 }
 
