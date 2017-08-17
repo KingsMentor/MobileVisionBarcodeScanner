@@ -446,7 +446,8 @@ public final class BarcodeCapture extends BarcodeFragment {
     @Override
     public void stopScanning() {
         super.stopScanning();
-        barcodeDetector.release();
+        if (barcodeDetector.isOperational())
+            barcodeDetector.release();
 
 
     }
