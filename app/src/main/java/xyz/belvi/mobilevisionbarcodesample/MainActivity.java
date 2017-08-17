@@ -105,12 +105,14 @@ public class MainActivity extends AppCompatActivity implements BarcodeRetriever 
         runOnUiThread(new Runnable() {
             @Override
             public void run() {
+
                 AlertDialog.Builder builder = new AlertDialog.Builder(MainActivity.this)
                         .setTitle("code retrieved")
                         .setMessage(barcode.displayValue);
                 builder.show();
             }
         });
+        barcodeCapture.stopScanning();
 
 
     }

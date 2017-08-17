@@ -1217,13 +1217,14 @@ public class CameraSource {
                 // The code below needs to run outside of synchronization, because this will allow
                 // the camera to add pending frame(s) while we are running detection on the current
                 // frame.
-
-                try {
-                    mDetector.receiveFrame(outputFrame);
-                } catch (Throwable t) {
-                    Log.e(TAG, "Exception thrown from receiver.", t);
-                } finally {
-                    mCamera.addCallbackBuffer(data.array());
+                if (mDetector.isOperational()) {
+                    try {
+                        mDetector.receiveFrame(outputFrame);
+                    } catch (Throwable t) {
+                        Log.e(TAG, "Exception thrown from receiver.", t);
+                    } finally {
+                        mCamera.addCallbackBuffer(data.array());
+                    }
                 }
             }
         }
