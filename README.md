@@ -3,6 +3,7 @@ Barcode Scanner supported by Mobile Vision Api
 
 [![](https://jitpack.io/v/KingsMentor/MobileVisionBarcodeScanner.svg)](https://jitpack.io/#KingsMentor/MobileVisionBarcodeScanner)
 [![Android Arsenal](https://img.shields.io/badge/Android%20Arsenal-MobileVisionBarcodeScanner-brightgreen.svg?style=flat)](http://android-arsenal.com/details/1/4516)
+[ ![Download](https://api.bintray.com/packages/kingsmentor/maven/MobileVision/images/download.svg) ](https://bintray.com/kingsmentor/maven/MobileVision/_latestVersion)
 
 
 ![Lib Sample](https://github.com/KingsMentor/MobileVisionBarcodeScanner/blob/master/lib_example.gif)
@@ -19,6 +20,15 @@ Barcode Scanner supported by Mobile Vision Api
 * update to 11.0.4 mobile vision  sdk
 
 #### adding as a dependency
+
+### on JCenter 
+```gradle
+dependencies {
+	        compile 'xyz.belvi.mobilevision:barcodescanner:2.0.0'
+
+	}
+```
+### on JitPack
 
 ##### Step 1. 
 Add the JitPack repository to your build file in your root build.gradle at the end of repositories:
