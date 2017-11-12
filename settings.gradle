@@ -1,1 +1,1 @@
-include ':app', ':mobilevisionbarcodescanner'
+include ':app', ':barcodescanner'
