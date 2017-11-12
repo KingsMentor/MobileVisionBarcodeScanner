@@ -42,6 +42,7 @@ import com.google.android.gms.common.GoogleApiAvailability;
 import com.google.android.gms.samples.vision.barcodereader.ui.camera.CameraSource;
 import com.google.android.gms.samples.vision.barcodereader.ui.camera.CameraSourcePreview;
 import com.google.android.gms.samples.vision.barcodereader.ui.camera.GraphicOverlay;
+import com.google.android.gms.vision.Detector;
 import com.google.android.gms.vision.MultiProcessor;
 import com.google.android.gms.vision.barcode.Barcode;
 import com.google.android.gms.vision.barcode.BarcodeDetector;
@@ -148,17 +149,20 @@ public final class BarcodeCapture extends BarcodeFragment {
      * Suppressing InlinedApi since there is a check that the minimum version is met before using
      * the constant.
      */
+
     @SuppressLint("InlinedApi")
     private void createCameraSource(boolean autoFocus, boolean useFlash) {
+        createCameraSource(getCustomBarcodeDetector(), autoFocus, useFlash);
+    }
+
+    @SuppressLint("InlinedApi")
+    private void createCameraSource(Detector<Barcode> barcodeDetector, boolean autoFocus, boolean useFlash) {
 
 
         // A barcode detector is created to track barcodes.  An associated multi-processor instance
         // is set to receive the barcode detection results, track the barcodes, and maintain
         // graphics for each barcode on screen.  The factory is used by the multi-processor to
         // create a separate tracker instance for each barcode.
-        barcodeDetector = new BarcodeDetector.Builder(getContext())
-                .setBarcodeFormats(getBarcodeFormat())
-                .build();
 
 
         BarcodeTrackerFactory barcodeFactory = new BarcodeTrackerFactory(mGraphicOverlay) {

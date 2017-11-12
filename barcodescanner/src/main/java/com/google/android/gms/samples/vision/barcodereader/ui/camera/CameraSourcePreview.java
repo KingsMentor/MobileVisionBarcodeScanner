@@ -18,6 +18,7 @@ package com.google.android.gms.samples.vision.barcodereader.ui.camera;
 import android.Manifest;
 import android.content.Context;
 import android.content.res.Configuration;
+import android.graphics.Canvas;
 import android.support.annotation.RequiresPermission;
 import android.util.AttributeSet;
 import android.util.Log;
@@ -56,6 +57,7 @@ public class CameraSourcePreview extends ViewGroup {
         if (cameraSource == null) {
             stop();
         }
+
 
         mCameraSource = cameraSource;
 
