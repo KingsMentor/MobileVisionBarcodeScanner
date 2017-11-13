@@ -2,12 +2,9 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/MobileVisionBarcodeSample.iml" filepath="$PROJECT_DIR$/MobileVisionBarcodeSample.iml" />
       <module fileurl="file://$PROJECT_DIR$/MobileVisionBarcodeScanner.iml" filepath="$PROJECT_DIR$/MobileVisionBarcodeScanner.iml" />
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
       <module fileurl="file://$PROJECT_DIR$/barcodescanner/barcodescanner.iml" filepath="$PROJECT_DIR$/barcodescanner/barcodescanner.iml" />
-      <module fileurl="file://$PROJECT_DIR$/mobilevisionbarcodescanner/mobilevisionbarcodescanner.iml" filepath="$PROJECT_DIR$/mobilevisionbarcodescanner/mobilevisionbarcodescanner.iml" />
-      <module fileurl="file://$PROJECT_DIR$/barcodescanner/mobilevisionbarcodescanner.iml" filepath="$PROJECT_DIR$/barcodescanner/mobilevisionbarcodescanner.iml" />
     </modules>
   </component>
 </project>

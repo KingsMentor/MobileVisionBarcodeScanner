@@ -78,7 +78,6 @@ public final class BarcodeCapture extends BarcodeFragment {
     // helper objects for detecting taps and pinches.
     private ScaleGestureDetector scaleGestureDetector;
     private GestureDetector gestureDetector;
-    private BarcodeDetector barcodeDetector;
 
 
     /**
@@ -173,6 +172,7 @@ public final class BarcodeCapture extends BarcodeFragment {
                 }
             }
         };
+
         barcodeDetector.setProcessor(
                 new MultiProcessor.Builder<>(barcodeFactory).build());
 
@@ -450,8 +450,9 @@ public final class BarcodeCapture extends BarcodeFragment {
     @Override
     public void stopScanning() {
         super.stopScanning();
-        if (barcodeDetector.isOperational())
-            barcodeDetector.release();
+        if (getCustomBarcodeDetector().isOperational())
+            getCustomBarcodeDetector().release();
+
 
 
     }

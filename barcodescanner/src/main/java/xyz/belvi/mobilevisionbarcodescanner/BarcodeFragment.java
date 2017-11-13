@@ -28,6 +28,7 @@ abstract public class BarcodeFragment extends Fragment {
 
     private boolean barcodeFormatUpdate = false;
     private Detector<Barcode> customBarcodeDetector;
+    private BarcodeDetector barcodeDetector;
 
     @Override
     public void onInflate(Context context, AttributeSet attrs, Bundle savedInstanceState) {
@@ -167,10 +168,14 @@ abstract public class BarcodeFragment extends Fragment {
         return this;
     }
 
+
+
     public Detector<Barcode> getCustomBarcodeDetector() {
-        return customBarcodeDetector == null ? new BarcodeDetector.Builder(getContext())
-                .setBarcodeFormats(getBarcodeFormat())
-                .build() : customBarcodeDetector;
+        if (barcodeDetector == null)
+            barcodeDetector = new BarcodeDetector.Builder(getContext())
+                    .setBarcodeFormats(getBarcodeFormat())
+                    .build();
+        return customBarcodeDetector == null ? barcodeDetector : customBarcodeDetector;
     }
 
     public abstract Camera retrieveCamera();
