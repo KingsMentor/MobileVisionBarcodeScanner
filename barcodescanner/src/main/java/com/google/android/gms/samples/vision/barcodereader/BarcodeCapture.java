@@ -42,6 +42,7 @@ import com.google.android.gms.common.GoogleApiAvailability;
 import com.google.android.gms.samples.vision.barcodereader.ui.camera.CameraSource;
 import com.google.android.gms.samples.vision.barcodereader.ui.camera.CameraSourcePreview;
 import com.google.android.gms.samples.vision.barcodereader.ui.camera.GraphicOverlay;
+import com.google.android.gms.vision.Detector;
 import com.google.android.gms.vision.MultiProcessor;
 import com.google.android.gms.vision.barcode.Barcode;
 import com.google.android.gms.vision.barcode.BarcodeDetector;
@@ -77,7 +78,6 @@ public final class BarcodeCapture extends BarcodeFragment {
     // helper objects for detecting taps and pinches.
     private ScaleGestureDetector scaleGestureDetector;
     private GestureDetector gestureDetector;
-    private BarcodeDetector barcodeDetector;
 
 
     /**
@@ -148,27 +148,32 @@ public final class BarcodeCapture extends BarcodeFragment {
      * Suppressing InlinedApi since there is a check that the minimum version is met before using
      * the constant.
      */
+
     @SuppressLint("InlinedApi")
     private void createCameraSource(boolean autoFocus, boolean useFlash) {
+        createCameraSource(getCustomBarcodeDetector(), autoFocus, useFlash);
+    }
+
+    @SuppressLint("InlinedApi")
+    private void createCameraSource(Detector<Barcode> barcodeDetector, boolean autoFocus, boolean useFlash) {
 
 
         // A barcode detector is created to track barcodes.  An associated multi-processor instance
         // is set to receive the barcode detection results, track the barcodes, and maintain
         // graphics for each barcode on screen.  The factory is used by the multi-processor to
         // create a separate tracker instance for each barcode.
-        barcodeDetector = new BarcodeDetector.Builder(getContext())
-                .setBarcodeFormats(getBarcodeFormat())
-                .build();
 
 
         BarcodeTrackerFactory barcodeFactory = new BarcodeTrackerFactory(mGraphicOverlay) {
             @Override
             void onCodeDetected(Barcode barcode) {
                 if (!isTouchAsCallback() && !supportMultipleScan()) {
-                    barcodeRetriever.onRetrieved(barcode);
+                    if (!isPause())
+                        barcodeRetriever.onRetrieved(barcode);
                 }
             }
         };
+
         barcodeDetector.setProcessor(
                 new MultiProcessor.Builder<>(barcodeFactory).build());
 
@@ -233,13 +238,15 @@ public final class BarcodeCapture extends BarcodeFragment {
         startCameraSource();
     }
 
-    public void refresh() {
+    public void refresh(boolean forceRefresh) {
+        if (getCustomBarcodeDetector().isOperational())
+            getCustomBarcodeDetector().release();
         mGraphicOverlay.setDrawRect(isShowDrawRect());
         mGraphicOverlay.setRectColors(getRectColors());
         mGraphicOverlay.setShowText(isShouldShowText());
         mCameraSource.setFocusMode(isAutoFocus() ? Camera.Parameters.FOCUS_MODE_CONTINUOUS_PICTURE : null);
         mCameraSource.setFlashMode(isShowFlash() ? Camera.Parameters.FLASH_MODE_TORCH : Camera.Parameters.FLASH_MODE_OFF);
-        if ((getCameraFacing() != mCameraSource.getCameraFacing()) || isBarcodeFormatUpdate()) {
+        if ((getCameraFacing() != mCameraSource.getCameraFacing()) || isBarcodeFormatUpdate() || forceRefresh) {
             setBarcodeFormatUpdate(false);
             mCameraSource.setCameraFacing(getCameraFacing());
             mCameraSource.stop();
@@ -247,6 +254,7 @@ public final class BarcodeCapture extends BarcodeFragment {
             createCameraSource(isAutoFocus(), isShowFlash());
             startCameraSource();
         }
+
     }
 
     /**
@@ -446,8 +454,8 @@ public final class BarcodeCapture extends BarcodeFragment {
     @Override
     public void stopScanning() {
         super.stopScanning();
-        if (barcodeDetector.isOperational())
-            barcodeDetector.release();
+        if (getCustomBarcodeDetector().isOperational())
+            getCustomBarcodeDetector().release();
 
 
     }

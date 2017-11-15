@@ -8,6 +8,9 @@ import android.support.v4.app.Fragment;
 import android.util.AttributeSet;
 
 import com.google.android.gms.samples.vision.barcodereader.ui.camera.CameraSource;
+import com.google.android.gms.vision.Detector;
+import com.google.android.gms.vision.barcode.Barcode;
+import com.google.android.gms.vision.barcode.BarcodeDetector;
 
 import java.util.ArrayList;
 
@@ -23,7 +26,10 @@ abstract public class BarcodeFragment extends Fragment {
 
     private int barcodeFormat, cameraFacing;
 
-    private boolean barcodeFormatUpdate = false;
+
+    private boolean barcodeFormatUpdate = false, pause = false;
+    private Detector<Barcode> customBarcodeDetector;
+    private BarcodeDetector barcodeDetector;
 
     @Override
     public void onInflate(Context context, AttributeSet attrs, Bundle savedInstanceState) {
@@ -156,6 +162,32 @@ abstract public class BarcodeFragment extends Fragment {
     }
 
     public void stopScanning() {
+    }
+
+    public BarcodeFragment setCustomDetector(Detector<Barcode> customDetector) {
+        this.customBarcodeDetector = customDetector;
+        return this;
+    }
+
+
+    public Detector<Barcode> getCustomBarcodeDetector() {
+        if (barcodeDetector == null)
+            barcodeDetector = new BarcodeDetector.Builder(getContext())
+                    .setBarcodeFormats(getBarcodeFormat())
+                    .build();
+        return customBarcodeDetector == null ? barcodeDetector : customBarcodeDetector;
+    }
+
+    public boolean isPause() {
+        return pause;
+    }
+
+    public void pause() {
+        pause = true;
+    }
+
+    public void resume() {
+        pause = false;
     }
 
     public abstract Camera retrieveCamera();

@@ -72,7 +72,7 @@ public class FragmentExample extends Fragment implements BarcodeRetriever {
                             .setBarcodeFormat(Barcode.ALL_FORMATS)
                             .setCameraFacing(frontCam.isChecked() ? CameraSource.CAMERA_FACING_FRONT : CameraSource.CAMERA_FACING_BACK)
                             .setShouldShowText(drawText.isChecked());
-                    barcodeCapture.refresh();
+                    barcodeCapture.refresh(true);
                 }
             }
         });
