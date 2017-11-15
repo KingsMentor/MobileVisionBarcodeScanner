@@ -47,7 +47,7 @@ public class MainActivity extends AppCompatActivity implements BarcodeRetriever 
 
     private static final String TAG = "BarcodeMain";
 
-    CheckBox fromXMl;
+    CheckBox fromXMl, pause;
     SwitchCompat drawRect, autoFocus, supportMultiple, touchBack, drawText, flash, frontCam;
 
     BarcodeCapture barcodeCapture;
@@ -62,6 +62,7 @@ public class MainActivity extends AppCompatActivity implements BarcodeRetriever 
         barcodeCapture.setRetrieval(this);
 
         fromXMl = (CheckBox) findViewById(R.id.from_xml);
+        pause = (CheckBox) findViewById(R.id.pause);
         drawRect = (SwitchCompat) findViewById(R.id.draw_rect);
         autoFocus = (SwitchCompat) findViewById(R.id.focus);
         supportMultiple = (SwitchCompat) findViewById(R.id.support_multiple);
@@ -88,10 +89,15 @@ public class MainActivity extends AppCompatActivity implements BarcodeRetriever 
                             .setTouchAsCallback(touchBack.isChecked())
                             .shouldAutoFocus(autoFocus.isChecked())
                             .setShowFlash(flash.isChecked())
+                            .setShowFlash(flash.isChecked())
                             .setBarcodeFormat(Barcode.ALL_FORMATS)
                             .setCameraFacing(frontCam.isChecked() ? CameraSource.CAMERA_FACING_FRONT : CameraSource.CAMERA_FACING_BACK)
                             .setShouldShowText(drawText.isChecked());
-                    barcodeCapture.refresh();
+                    if (pause.isChecked())
+                        barcodeCapture.pause();
+                    else
+                        barcodeCapture.resume();
+                    barcodeCapture.refresh(true);
                 }
             }
         });

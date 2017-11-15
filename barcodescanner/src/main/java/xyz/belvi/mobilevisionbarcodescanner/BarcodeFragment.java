@@ -26,7 +26,8 @@ abstract public class BarcodeFragment extends Fragment {
 
     private int barcodeFormat, cameraFacing;
 
-    private boolean barcodeFormatUpdate = false;
+
+    private boolean barcodeFormatUpdate = false, pause = false;
     private Detector<Barcode> customBarcodeDetector;
     private BarcodeDetector barcodeDetector;
 
@@ -169,13 +170,24 @@ abstract public class BarcodeFragment extends Fragment {
     }
 
 
-
     public Detector<Barcode> getCustomBarcodeDetector() {
         if (barcodeDetector == null)
             barcodeDetector = new BarcodeDetector.Builder(getContext())
                     .setBarcodeFormats(getBarcodeFormat())
                     .build();
         return customBarcodeDetector == null ? barcodeDetector : customBarcodeDetector;
+    }
+
+    public boolean isPause() {
+        return pause;
+    }
+
+    public void pause() {
+        pause = true;
+    }
+
+    public void resume() {
+        pause = false;
     }
 
     public abstract Camera retrieveCamera();

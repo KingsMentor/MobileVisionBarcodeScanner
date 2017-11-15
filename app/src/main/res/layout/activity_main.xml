@@ -121,6 +121,14 @@
                 android:checked="true"
                 android:text="From xml" />
 
+            <CheckBox
+                android:id="@+id/pause"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:checked="true"
+                android:text="pause" />
+
 
         </LinearLayout>
 

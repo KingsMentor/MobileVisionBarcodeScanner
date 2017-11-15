@@ -168,7 +168,8 @@ public final class BarcodeCapture extends BarcodeFragment {
             @Override
             void onCodeDetected(Barcode barcode) {
                 if (!isTouchAsCallback() && !supportMultipleScan()) {
-                    barcodeRetriever.onRetrieved(barcode);
+                    if (!isPause())
+                        barcodeRetriever.onRetrieved(barcode);
                 }
             }
         };
@@ -237,13 +238,15 @@ public final class BarcodeCapture extends BarcodeFragment {
         startCameraSource();
     }
 
-    public void refresh() {
+    public void refresh(boolean forceRefresh) {
+        if (getCustomBarcodeDetector().isOperational())
+            getCustomBarcodeDetector().release();
         mGraphicOverlay.setDrawRect(isShowDrawRect());
         mGraphicOverlay.setRectColors(getRectColors());
         mGraphicOverlay.setShowText(isShouldShowText());
         mCameraSource.setFocusMode(isAutoFocus() ? Camera.Parameters.FOCUS_MODE_CONTINUOUS_PICTURE : null);
         mCameraSource.setFlashMode(isShowFlash() ? Camera.Parameters.FLASH_MODE_TORCH : Camera.Parameters.FLASH_MODE_OFF);
-        if ((getCameraFacing() != mCameraSource.getCameraFacing()) || isBarcodeFormatUpdate()) {
+        if ((getCameraFacing() != mCameraSource.getCameraFacing()) || isBarcodeFormatUpdate() || forceRefresh) {
             setBarcodeFormatUpdate(false);
             mCameraSource.setCameraFacing(getCameraFacing());
             mCameraSource.stop();
@@ -251,6 +254,7 @@ public final class BarcodeCapture extends BarcodeFragment {
             createCameraSource(isAutoFocus(), isShowFlash());
             startCameraSource();
         }
+
     }
 
     /**
@@ -452,7 +456,6 @@ public final class BarcodeCapture extends BarcodeFragment {
         super.stopScanning();
         if (getCustomBarcodeDetector().isOperational())
             getCustomBarcodeDetector().release();
-
 
 
     }
