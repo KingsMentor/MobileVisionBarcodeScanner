@@ -136,7 +136,7 @@ and this is `rect_color` in `colors.xml`
 ##### Step 2 - Initialise in java
 
 ```java
-BarcodeCapture barcodeCapture = (BarcodeCapture) getSupportFragmentManager().findFragmentById(barcode);
+BarcodeCapture barcodeCapture = (BarcodeCapture) getSupportFragmentManager().findFragmentById(R.id.barcode);
 barcodeCapture.setRetrieval(this);
 ```
 
