@@ -20,7 +20,7 @@ android {
 }
 
 dependencies {
-    implementation 'com.google.android.gms:play-services-vision:15.0.2'
+    api 'com.google.android.gms:play-services-vision:15.0.2'
     implementation 'com.tbruyelle.rxpermissions2:rxpermissions:0.9.4@aar'
     implementation 'io.reactivex.rxjava2:rxjava:2.1.6'
 }
