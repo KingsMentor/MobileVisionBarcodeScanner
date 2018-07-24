@@ -263,9 +263,14 @@ public final class BarcodeCapture extends BarcodeFragment {
     @Override
     public void onPause() {
         super.onPause();
-        if (mPreview != null) {
-            mPreview.stop();
-        }
+        new Thread(new Runnable() {
+            @Override
+            public void run() {
+                if (mPreview != null) {
+                    mPreview.stop();
+                }
+            }
+        }).start();
     }
 
     /**
