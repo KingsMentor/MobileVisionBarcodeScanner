@@ -26,18 +26,18 @@ repositories {
 
 
 dependencies {
-    compile fileTree(include: ['*.jar'], dir: 'libs')
-    androidTestCompile('com.android.support.test.espresso:espresso-core:2.2.2', {
+    implementation fileTree(include: ['*.jar'], dir: 'libs')
+    androidTestImplementation('com.android.support.test.espresso:espresso-core:2.2.2', {
         exclude group: 'com.android.support', module: 'support-annotations'
     })
-    compile 'com.android.support:appcompat-v7:26.1.0'
-    testCompile 'junit:junit:4.12'
-    compile fileTree(include: ['*.jar'], dir: 'libs')
-    compile 'com.android.support:support-v4:26.1.0'
-    compile 'com.android.support:design:26.1.0'
-    //    compile 'com.github.KingsMentor:MobileVisionBarcodeScanner:2.0.0'
-    //    compile('com.github.CharlesHarroch:MobileVisionBarcodeScanner:1.2') { transitive = true; }
-    compile project(':barcodescanner')
+    implementation 'com.android.support:appcompat-v7:26.1.0'
+    testImplementation 'junit:junit:4.12'
+    implementation 'com.android.support:support-v4:26.1.0'
+    implementation 'com.android.support:design:26.1.0'
+    implementation 'com.google.android.gms:play-services-vision:15.0.2'
+    //    implementation 'com.github.KingsMentor:MobileVisionBarcodeScanner:2.0.0'
+    //    implementation('com.github.CharlesHarroch:MobileVisionBarcodeScanner:1.2') { transitive = true; }
+    implementation project(':barcodescanner')
 }
 
 

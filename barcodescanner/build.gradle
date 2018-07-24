@@ -20,9 +20,9 @@ android {
 }
 
 dependencies {
-    compile 'com.google.android.gms:play-services-vision:11.4.2'
-    compile 'com.tbruyelle.rxpermissions2:rxpermissions:0.9.4@aar'
-    compile 'io.reactivex.rxjava2:rxjava:2.1.5'
+    implementation 'com.google.android.gms:play-services-vision:15.0.2'
+    implementation 'com.tbruyelle.rxpermissions2:rxpermissions:0.9.4@aar'
+    implementation 'io.reactivex.rxjava2:rxjava:2.1.6'
 }
 
 
