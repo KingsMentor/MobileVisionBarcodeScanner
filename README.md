@@ -24,7 +24,7 @@ Barcode Scanner supported by Mobile Vision Api
 ### on JCenter 
 ```gradle
 dependencies {
-	        compile 'xyz.belvi.mobilevision:barcodescanner:2.0.3'
+	        implementation ''xyz.belvi.mobilevision:barcodescanner:2.0.3''
 
 	}
 ```
